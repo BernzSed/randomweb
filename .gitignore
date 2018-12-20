@@ -1,3 +1,9 @@
+# randomweb-specific
+# Settings are per-deployment, a sample is given in _settings.ini
+randomweb/settings/settings.ini
+randomweb/static/
+randomweb/media/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
