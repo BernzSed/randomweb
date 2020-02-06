@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'randomweb.main',
+    'randomweb.events',
 ]
 
 MIDDLEWARE = [
@@ -111,3 +112,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+FACEBOOK_USER = config('FACEBOOK_USER')
+FACEBOOK_PASS = config('FACEBOOK_PASS')
+FACEBOOK_GROUP = config('FACEBOOK_GROUP')
