@@ -172,18 +172,19 @@ class Command(BaseCommand):
             obj.end_time = event['end']
             obj.description = description
             obj.attending = going
-            if obj.image_url != event['image']:
+            if not event['image']:
+                obj.image_url = None
+                obj.image.delete()
+                obj.image = None
+            elif obj.image_url != event['image']:
                 obj.image_url = event['image']
-                if event['image']:
-                    parsed = urlparse(event['image'])
-                    obj.image.save(
-                        '%s%s' % (
-                            event['event_id'],
-                            path.splitext(parsed.path)[1],
-                        ),
-                        ContentFile(session.get(event['image']).content),
-                        save=False,
-                    )
-                else:
-                    obj.image = None
+                parsed = urlparse(event['image'])
+                obj.image.save(
+                    '%s%s' % (
+                        event['event_id'],
+                        path.splitext(parsed.path)[1],
+                    ),
+                    ContentFile(session.get(event['image']).content),
+                    save=False,
+                )
             obj.save()
